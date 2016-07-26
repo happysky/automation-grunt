@@ -1,0 +1,15 @@
+$fontStack:     Helvetica, sans-serif;
+$primaryColor: #331;
+
+body{
+  font-family: $fontStack;
+  color: $primaryColor;
+  border-radius: 5px;
+  display: flex;
+  opacity:0.5;
+}
+.wrap{
+  width:100px;
+  height:100px;
+  background:#f00;
+}
