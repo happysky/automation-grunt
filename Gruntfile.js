@@ -26,7 +26,7 @@ module.exports = function(grunt) {
                 
                 // src-dest的3种格式
                 expand: true,//跟cwd组合使用，指定cwd后不指定 expand为true，会找不到文件
-                cwd: 'src/',//指定相对目录
+                cwd: 'dist/',//指定相对目录
                 src: ['**/*.html', '!inc/*.html'],
                 dest: 'dist/',
                 
@@ -41,7 +41,30 @@ module.exports = function(grunt) {
                 // ]
             }
         },
-
+        htmlmin: {                                     // Task 
+            // inc: {
+            //     options: {                                 // Target options 
+            //         removeComments: true,
+            //         collapseWhitespace: true,
+            //         minifyCSS: true,
+            //         minifyJS: true
+            //     },
+            //     files:[
+            //         {src: '**/*.html', dest: 'dist/', expand: true, cwd: 'src/inc'}
+            //     ]
+            // },
+            dist: {                                      // Target 
+                options: {                                 // Target options 
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    minifyCSS: true,
+                    minifyJS: true 
+                },
+                files:[
+                    {src: '**/*.html', dest: 'dist/', expand: true, cwd: 'src/'}
+                ]
+            }
+        },
         //编译scss文件
         sass: {
             dist: {
@@ -218,10 +241,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-file-version');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-spritesmith');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
+
 
     // 告诉grunt当我们在终端中输入grunt时需要做些什么
     //grunt.registerTask('default', ['uglify', 'watch', 'browserSync']);
     //grunt.registerTask('default', ['browserSync', 'includereplace']);
-grunt.registerTask('default', ['clean', 'includereplace', 'sass', 'less', 'cssmin', 'imagemin', 'uglify', 'file_version', 'browserSync', 'watch']);
+grunt.registerTask('default', ['clean', 'htmlmin', 'includereplace', 'sass', 'less', 'cssmin', 'imagemin', 'uglify', 'file_version', 'browserSync', 'watch']);
 
 };

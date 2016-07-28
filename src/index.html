@@ -1,9 +1,34 @@
 @@include('inc/header.html')
 
 
+<style>
+    .container{
+        width:100px;
+        height:100px;
+        background:#f00;
+        padding:10px;
+    }
+</style>
 <div class="wrap">xxxxxx
     <img src="img/L1.png" />
+    <div title="advabc">aaaaaaaaaaa</div>
 </div>
-
+<script type="template/text">
+    @@include('inc/template.html')
+</script>
+<script>
+    (function(){
+        var app = {
+            init: function(){
+                console.log('init func');
+                this.bindEvent();
+            },
+            bindEvent: function(){
+                console.log('init event');
+            }
+        };
+        app.init();
+    })();
+</script>
 
 @@include('inc/footer.html')
